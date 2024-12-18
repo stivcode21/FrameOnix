@@ -1,21 +1,21 @@
 import React from 'react';
 
-const SectionAbout = ({ id, styles, content, children }) => {
+const SectionAbout = ({ id, styles = {}, content = {}, children }) => {
     return (
         <>
             <section id={id || "About"}
-                className={`onixContainer scroll-mt-24 ${styles || 'flex justify-center items-center gap-5 flex-col md:flex-row-reverse'}`}>
+                className={`onixContainer scroll-mt-24 flex justify-center items-center gap-5 flex-col md:flex-row-reverse ${styles.about}`}>
                 {children ? (
                     children
                 ) : (
                     <>
-                        <div className='md:w-1/2 md:pl-10'>
-                            <h2 className='text-5xl font-semibold text-center mb-4'>
+                        <div className={`md:w-1/2 md:pl-10 ${styles.containerDescription}`}>
+                            <h2 className={`text-center font-semibold mb-4 ${styles.h2 || "text-5xl"}`}>
                                 {content?.h2 || "About Me"}
                             </h2>
                             <div className='flex justify-center gap-5 items-center flex-col'>
                                 {content?.paragraphs?.map((paragraph, index) => (
-                                    <p key={index}>
+                                    <p key={index} className={styles.p}>
                                         {paragraph.p}
                                     </p>
                                 )) || (
@@ -31,10 +31,8 @@ const SectionAbout = ({ id, styles, content, children }) => {
                                     )}
                             </div>
                         </div>
-                        <div style={{ backgroundImage: `url('${content?.img || "/previuImg-3.png"}')` }}
-                            className='bg-cover bg-center bg-no-repeat h-[400px] md:h-[500px] w-full md:w-1/2 flex flex-col justify-center items-center'>
-                            {content?.imageContent || null}
-                        </div>
+                        <img src={`${content?.img || "/previuImg-3.png"}`} alt='img-about'
+                            className={`object-cover object-center bg-no-repeat flex flex-col justify-center items-center ${styles.img || "h-[400px] md:h-[500px] w-full md:w-1/2"}`} />
                     </>
                 )}
             </section>

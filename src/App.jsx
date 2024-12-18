@@ -1,13 +1,17 @@
-import { OnixBlog } from "./components"
+import OnixBlogv1 from "./components/Blogs/OnixBlogv1"
 
 function App() {
 
   return (
-    <>
-      <div>
-        <OnixBlog />
-      </div>
-    </>
+    <OnixBlogv1
+      mainProps={{
+        id: "main",
+        styles: {
+          main: "",
+          h2: "",
+          button: "",
+        }
+      }} />
   )
 }
 

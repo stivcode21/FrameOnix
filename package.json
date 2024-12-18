@@ -1,8 +1,20 @@
 {
-  "name": "frameonix",
+  "name": "@stivcode/frameonix",
+  "author": "@StivCode21",
+  "description": "A beautiful library with editable website layouts",
   "private": true,
+  "license": "StivCode License",
   "version": "0.0.0",
   "type": "module",
+  "keywords": [
+    "web layouts",
+    "editable layouts",
+    "components",
+    "website design",
+    "UI components",
+    "web design library",
+    "responsive layouts"
+  ],
   "scripts": {
     "dev": "vite",
     "build": "vite build",
