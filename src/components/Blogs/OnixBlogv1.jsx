@@ -11,9 +11,9 @@ import Footer from "./v1/Footer"
 const OnixBlogv1 = ({ styleOnixBlog, headerProps = {}, mainProps = {}, aboutProps = {}, articleProps = {}, contactProps = {}, postProps = {}, footerProps = {} }) => {
 
     return (
-        <div className={`"min-h-screen flex flex-col gap-20 scroll-smooth" ${styleOnixBlog}`}>
+        <div className={`"min-h-screen flex flex-col scroll-smooth" ${styleOnixBlog}`}>
             <Header {...headerProps} />
-            <Main {...mainProps} />|
+            <Main {...mainProps} />
             <SectionPost {...postProps} />
             <SectionAbout {...aboutProps} />
             <SectionArticle {...articleProps} />
