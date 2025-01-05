@@ -40,7 +40,7 @@ const SectionAbout = ({ id, styles = {}, content = {}, children }) => {
 
                         {/* Image Section */}
                         <img
-                            src={content?.img || "/previuImg-3.png"}
+                            src={content?.img || "https://firebasestorage.googleapis.com/v0/b/data-shop-f5bf3.appspot.com/o/frameonix%2FpreviuImg-3.png?alt=media&token=758762f3-d65c-4a21-afe9-2cc70ccf8511"}
                             alt="img-about"
                             className={`object-cover object-center bg-no-repeat flex flex-col justify-center items-center ${styles.img || "h-[400px] md:h-[500px] w-full md:w-1/2"}`}
                         />

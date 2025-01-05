@@ -12,7 +12,7 @@ const Footer = ({ id, styles = {}, content = {}, children }) => {
                             </p>
 
                             <a href={id || "#Main"}>
-                                <div style={{ backgroundImage: `url('${content?.img || "/FrameOnixLogo.png"}')` }}
+                                <div style={{ backgroundImage: `url('${content?.img || "https://firebasestorage.googleapis.com/v0/b/data-shop-f5bf3.appspot.com/o/frameonix%2FLogoOnix.png?alt=media&token=24e8b50f-c262-4f70-8c00-eb98fc5c3414"}')` }}
                                     className={`bg-cover bg-center bg-no-repeat ${styles.img || "w-12 h-12 rounded-lg"}`}>
                                 </div>
                             </a>

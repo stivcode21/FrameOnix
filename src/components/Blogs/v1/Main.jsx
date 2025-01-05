@@ -36,7 +36,7 @@ const Main = ({ id, styles = {}, content = {}, children }) => {
                                 />
                             ) : (
                                 <div
-                                    style={{ backgroundImage: `url('${content?.img || "/previuVideo-1.png"}')` }}
+                                    style={{ backgroundImage: `url('${content?.img || "https://firebasestorage.googleapis.com/v0/b/data-shop-f5bf3.appspot.com/o/frameonix%2FpreviuVideo-1.png?alt=media&token=e09c7b4b-b24a-4a10-be6b-d00084b932dd"}')` }}
                                     className={`bg-cover bg-center bg-no-repeat h-full w-full ${styles.img}`}
                                     role="img"
                                 />

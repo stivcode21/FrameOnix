@@ -7,7 +7,6 @@ import SectionArticle from "./v1/SectionArticle";
 import SectionContact from "./v1/SectionContact";
 import Footer from "./v1/Footer"
 
-
 const OnixBlogv1 = ({ styleOnixBlog, headerProps = {}, mainProps = {}, aboutProps = {}, articleProps = {}, contactProps = {}, postProps = {}, footerProps = {} }) => {
 
     return (

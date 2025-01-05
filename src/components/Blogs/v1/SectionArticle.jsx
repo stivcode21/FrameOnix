@@ -21,7 +21,7 @@ const SectionArticle = ({ id, styles = {}, content = {}, children }) => {
                     </div>
 
                     {/* Image Section */}
-                    <div style={{ backgroundImage: `url('${content?.img || "/previuImg-1.png"}')` }}
+                    <div style={{ backgroundImage: `url('${content?.img || "https://firebasestorage.googleapis.com/v0/b/data-shop-f5bf3.appspot.com/o/frameonix%2FpreviuImg-1.png?alt=media&token=b1bdd884-faf6-461b-ace3-37c114043295"}')` }}
                         role="img"
                         className={`bg-cover bg-center bg-no-repeat flex flex-col justify-end items-start ${styles.img || "h-[400px] w-full"}`}>
                         {/* Article Content */}

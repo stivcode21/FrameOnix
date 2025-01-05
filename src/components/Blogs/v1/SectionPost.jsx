@@ -46,7 +46,7 @@ const SectionPost = ({ id, styles = {}, content = {}, children }) => {
                                             key={index}
                                             className="p-4 border rounded-lg">
                                             <img
-                                                src="/previuImg-2.png"
+                                                src="https://firebasestorage.googleapis.com/v0/b/data-shop-f5bf3.appspot.com/o/frameonix%2FpreviuImg-2.png?alt=media&token=acfe8602-75e2-462a-9595-5f5dd761db78"
                                                 alt={`previuPost-${index}`}
                                                 className="w-full h-auto" />
                                             <h2 className="mt-2 text-lg font-semibold">

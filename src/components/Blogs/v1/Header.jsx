@@ -11,7 +11,7 @@ const Header = ({ id, styles = {}, content = {}, children }) => {
                     <div className={styles.containerImg}>
                         <a href={id || "#Main"}>
                             <div
-                                style={{ backgroundImage: `url('${content?.img || "/FrameOnixLogo.png"}')` }}
+                                style={{ backgroundImage: `url('${content?.img || "https://firebasestorage.googleapis.com/v0/b/data-shop-f5bf3.appspot.com/o/frameonix%2FFrameOnixLogo.png?alt=media&token=caeb140c-f605-4e3e-b023-e789e7dec315"}')` }}
                                 className={`bg-cover bg-center bg-no-repeat ${styles.img || "w-12 h-12"}`}
                             ></div>
                         </a>
