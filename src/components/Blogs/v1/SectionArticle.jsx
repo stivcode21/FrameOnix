@@ -1,43 +1,100 @@
 import React from 'react';
+import styled from 'styled-components';
+
+const Section = styled.section`
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 4rem 4%;
+  scroll-margin-top: 4rem;
+  ${({ $styles }) => $styles?.article && $styles.article}
+`;
+
+const DescriptionContainer = styled.div`
+  width: 100%;
+  ${({ $styles }) => $styles?.containerDescription && $styles.containerDescription}
+`;
+
+const Subtitle = styled.h2`
+  font-weight: 700;
+  text-align: end;
+  margin-bottom: 12px;
+  display: flex;
+  justify-content: flex-end;
+  font-size: 28px;
+
+  @media (min-width: 800px) 
+    { font-size: 38px; };
+  ${({ $styles }) => $styles?.h2 && $styles.h2}
+`;
+
+const ImageSection = styled.div`
+  width: 100%;
+  height: 400px;
+  background-image: url('${({ $img }) => $img}');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  align-items: flex-start;
+  ${({ $styles }) => $styles?.img && $styles.img}
+`;
+
+const Article = styled.article`
+  padding: 10px;
+  width: 100%;
+  @media (min-width: 800px) 
+    { margin: 1rem;
+      width: 50%; }
+  ${({ $styles }) => $styles?.containerArticle && $styles.containerArticle}
+`;
+
+const ArticleTitle = styled.h3`
+  font-weight: 600;
+  font-size: 1.5rem;
+  @media (min-width: 800px)
+   { font-size: 1.9rem; }
+  ${({ $styles }) => $styles?.h3 && $styles.h3}
+`;
+
+const ArticleText = styled.p`
+ font-size: 0.8rem;
+ @media (min-width: 800px) 
+ { font-size: 1rem; }
+  ${({ $styles }) => $styles?.text && $styles.text}
+`;
 
 const SectionArticle = ({ id, styles = {}, content = {}, children }) => {
-    return (
-        <section id={id || "Blog"}
-            className={`onixContainer scroll-mt-16 flex flex-col justify-center items-center py-16 h-full ${styles.article}`}>
-            {children ? (
-                children
-            ) : (
-                <>
-                    {/* Description Section */}
-                    <div className={`w-full ${styles.containerDescription}`}>
-                        <div>
-                            <h2 className={`font-semibold md:w-1/2 ml-auto text-end ${styles.h2 || "text-xl md:text-2xl"}`}>
-                                {content.h2 || "This is a default subtitle"}
-                            </h2>
-                            <p className={`md:w-1/2 ml-auto mb-4 text-end ${styles.p}`}>
-                                {content.p || "Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptas recusandae impedit maxime quibusdam, suscipit laudantium tenetur. Odit aliquam, quis molestias, cum vel dolor debitis sunt esse modi ex minima quo"}
-                            </p>
-                        </div>
-                    </div>
+  return (
+    <Section id={id || "Blog"} $styles={styles}>
+      {children ? (
+        children
+      ) : (
+        <>
+          {/* Description Section */}
+          <DescriptionContainer $styles={styles}>
+            <Subtitle $styles={styles}>{content.h2 || "This is a default subtitle"}</Subtitle>
+          </DescriptionContainer>
 
-                    {/* Image Section */}
-                    <div style={{ backgroundImage: `url('${content?.img || "https://firebasestorage.googleapis.com/v0/b/data-shop-f5bf3.appspot.com/o/frameonix%2FpreviuImg-1.png?alt=media&token=b1bdd884-faf6-461b-ace3-37c114043295"}')` }}
-                        role="img"
-                        className={`bg-cover bg-center bg-no-repeat flex flex-col justify-end items-start ${styles.img || "h-[400px] w-full"}`}>
-                        {/* Article Content */}
-                        <article className={`m-2 ${styles.containerArticle || "w-[50%] md:m-4"}`}>
-                            <h3 className={`font-semibold text-2xl ${styles.h3 || "md:text-3xl"}`}>
-                                {content.h3 || "Default Article"}
-                            </h3>
-                            <p className={styles.text || "text-sm md:text-md"}>
-                                {content.text || "This is a default article description Lorem ipsum dolor sit amet consectetur adipisicing elit. Debitis alias odio, commodi maxime modi sunt quam molestias ea ipsum, assumenda saepe officia temporibus laudantium unde repellendus ducimus, velit dolores corrupti."}
-                            </p>
-                        </article>
-                    </div>
-                </>
-            )}
-        </section>
-    );
+          {/* Image Section */}
+          <ImageSection $img={content?.img || "https://firebasestorage.googleapis.com/v0/b/data-shop-f5bf3.appspot.com/o/frameonix%2FpreviuImg-1.png?alt=media&token=b1bdd884-faf6-461b-ace3-37c114043295"} $styles={styles}>
+            {/* Article Content */}
+            <Article $styles={styles}>
+              <ArticleTitle $styles={styles}>{content.h3 || "Default Article"}</ArticleTitle>
+              <ArticleText $styles={styles}>
+                {content.text || "This is a default article description Lorem ipsum dolor sit amet consectetur adipisicing elit. Debitis alias odio, commodi maxime modi sunt quam molestias ea ipsum, assumenda saepe officia temporibus laudantium unde repellendus ducimus, velit dolores corrupti."}
+              </ArticleText>
+            </Article>
+          </ImageSection>
+        </>
+      )}
+    </Section>
+  );
 };
 
 export default SectionArticle;
