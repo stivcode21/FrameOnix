@@ -1,6 +1,8 @@
 import React from 'react';
 import styled from 'styled-components';
 
+
+//styles
 const Section = styled.section`
   display: flex;
   justify-content: center;
@@ -32,7 +34,7 @@ const Title = styled.h2`
   font-size: 2.5rem;
   font-weight: 800;
   text-transform: uppercase;
-  ${({ $styles }) => $styles?.h2 && $styles.h2}
+  ${({ $styles }) => $styles?.title && $styles.title}
 `;
 
 const Paragraph = styled.p`
@@ -54,7 +56,23 @@ const Img = styled.img`
   }
 `;
 
+//data
+const defaultContent = {
+    title: "About Me",
+    img: "https://firebasestorage.googleapis.com/v0/b/data-shop-f5bf3.appspot.com/o/frameonix%2FpreviuImg-3.png?alt=media&token=758762f3-d65c-4a21-afe9-2cc70ccf8511",
+    paragraphs: [
+        { p: "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Aspernatur saepe impedit non explicabo aliquam nisi tenetur enim, hic ipsa deserunt cupiditate laborum consectetur quam, sunt nobis temporibus, quod error nihil! Lorem ipsum, dolor sit amet consectetur adipisicing elit. Aspernatur saepe impedit non explicabo aliquam nisi tenetur enim, hic ipsa deserunt cupiditate laborum consectetur quam, sunt nobis temporibus, quod error nihil!" },
+        { p: "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Aspernatur saepe impedit non explicabo aliquam nisi tenetur enim, hic ipsa deserunt cupiditate laborum consectetur quam, sunt nobis temporibus, quod error nihil! Lorem ipsum, dolor sit amet consectetur adipisicing elit. Aspernatur saepe impedit non explicabo aliquam nisi tenetur enim, hic ipsa deserunt cupiditate laborum consectetur quam, sunt nobis temporibus, quod error nihil!" },
+    ],
+};
+
 const SectionAbout = ({ id, styles = {}, content = {}, children }) => {
+
+    const mergedContent = {
+        ...defaultContent,
+        ...content
+    };
+
     return (
         <Section id={id || "About"} $styles={styles} >
             {children ? (
@@ -63,36 +81,29 @@ const SectionAbout = ({ id, styles = {}, content = {}, children }) => {
                 <>
                     {/* Content Section */}
                     <ContentContainer $styles={styles}>
-                        <Title $styles={styles}>{content?.h2 || "About Me"}</Title>
+                        <Title $styles={styles}>{mergedContent.title}</Title>
                         <div>
-                            {content?.paragraphs?.length <= 3 ? (
-                                content.paragraphs.map((paragraph, index) => (
+                            {mergedContent.paragraphs?.length <= 3 && (
+                                mergedContent.paragraphs.map((paragraph, index) => (
                                     <Paragraph key={index} $styles={styles}>
                                         {paragraph.p}
+                                        <br /><br />
                                     </Paragraph>
                                 ))
-                            ) : (
-                                <>
-                                    <Paragraph $styles={styles}>
-                                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Sunt, totam dolor? Ea rem ipsa nemo molestias architecto eligendi qui amet libero incidunt aperiam vitae impedit voluptas voluptatibus, illo esse non.
-                                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Iure enim dolore soluta sit nesciunt quas exercitationem consequuntur aspernatur eum fugit! Vel, nemo ut sequi praesentium commodi aperiam laudantium cumque quas.
-                                        <br /> <br />
-                                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Temporibus ipsam repellendus inventore voluptas mollitia cum sapiente accusamus velit tempora soluta, veniam nam provident, reiciendis eligendi officiis et assumenda, quaerat pariatur.
-                                    </Paragraph>
-                                </>
                             )}
                         </div>
                     </ContentContainer>
 
                     {/* Image Section */}
                     <Img
-                        src={content?.img || "https://firebasestorage.googleapis.com/v0/b/data-shop-f5bf3.appspot.com/o/frameonix%2FpreviuImg-3.png?alt=media&token=758762f3-d65c-4a21-afe9-2cc70ccf8511"}
+                        src={mergedContent.img}
                         alt="img-about"
                         $styles={styles}
                     />
                 </>
-            )}
-        </Section>
+            )
+            }
+        </Section >
     );
 };
 

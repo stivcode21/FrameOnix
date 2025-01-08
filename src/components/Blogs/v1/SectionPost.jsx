@@ -2,6 +2,7 @@ import { MoveUpRight } from 'lucide-react';
 import React from 'react';
 import styled from 'styled-components';
 
+//styles
 const Section = styled.section`
   scroll-margin-top: 4rem;
   width: 100%;
@@ -22,7 +23,7 @@ const Heading = styled.h2`
   font-size: 2.5rem;
   font-weight: bold;
   text-align: center;
-  ${({ $styles }) => $styles?.h2 && $styles.h2}
+  ${({ $styles }) => $styles?.title && $styles.title}
 `;
 
 const Grid = styled.div`
@@ -30,7 +31,7 @@ const Grid = styled.div`
   grid-template-columns: repeat(1, minmax(0, 1fr));
   gap: 1.5rem;
 
-  @media (min-width: 768px) {
+  @media (min-width: 800px) {
     grid-template-columns: repeat(2, minmax(0, 1fr));
     gap: 2rem;
   }
@@ -57,7 +58,7 @@ const PostCard = styled.div`
   &:hover {
     transform: scale(1.01);
   }
-  ${({ $styles }) => $styles?.containerDescription && $styles.containerDescription}
+  ${({ $styles }) => $styles?.card && $styles.card}
 `;
 
 const Img = styled.img`
@@ -65,18 +66,18 @@ const Img = styled.img`
   height: 16rem;
   object-fit: cover;
   border-radius: 0.5rem;
-  ${({ $styles }) => $styles?._img && $styles._img}
+  ${({ $styles }) => $styles?.img && $styles.img}
 `;
 
 const PostHeading = styled.h3`
   margin-top: 0.5rem;
   font-weight: 600;
-  ${({ $styles }) => $styles?._h3 && $styles._h3}
+  ${({ $styles }) => $styles?._title && $styles._title}
 `;
 
 const PostDescription = styled.p`
   margin-bottom: 4px;
-  ${({ $styles }) => $styles?._p && $styles._p}
+  ${({ $styles }) => $styles?.description && $styles.description}
 `;
 
 const PostLink = styled.a`
@@ -97,7 +98,7 @@ const PostLink = styled.a`
       bottom: 8px;
     }
   }
-  ${({ $styles }) => $styles?._path && $styles._path}
+  ${({ $styles }) => $styles?.path && $styles.path}
 `;
 
 const ArrowRight = styled.div`
@@ -107,57 +108,61 @@ const ArrowRight = styled.div`
  transition: transform 0.2s ease-in-out;
 `
 
+//data
+const defaultContent = {
+  title: 'Latest Posts',
+  cards: [
+    {
+      img: 'https://firebasestorage.googleapis.com/v0/b/data-shop-f5bf3.appspot.com/o/frameonix%2FpreviuImg-2.png?alt=media&token=acfe8602-75e2-462a-9595-5f5dd761db78',
+      title: 'Default Title',
+      description: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Alias eligendi animi temporibus, officiis deserunt pariatur quae accusantium nam ipsum consequuntur eius quidem',
+      path: '#',
+      namePath: 'Link',
+    },
+  ],
+};
+
 const SectionPost = ({ id, styles = {}, content = {}, children }) => {
+
+  const mergedContent = {
+    ...defaultContent,
+    ...content,
+    cards: content?.cards?.length
+      ? content.cards
+      : Array(4).fill(defaultContent.cards[0]), // Si no hay cards en content, usa 4 por defecto
+  };
+
   return (
     <Section id={id || "Posts"}>
       {children ? (
         children
       ) : (
         <Container $styles={styles}>
-          <Heading $styles={styles}>{content.h2 || "Latest Posts"}</Heading>
+          <Heading $styles={styles}>{mergedContent.title}</Heading>
           <Grid $styles={styles}>
-            {content?.posts?.length > 1 ? (
-              content.posts.map((post, index) => (
-                <PostCard key={index} $styles={styles}>
-                  <Img
-                    src={post._img}
-                    alt={`previuPost${index}`}
-                    $styles={styles}
-                  />
-                  <PostHeading $styles={styles}>{post._h3}</PostHeading>
-                  <PostDescription $styles={styles}>{post._p}</PostDescription>
-                  <PostLink
-                    href={post._path}
-                    target="_blank"
-                    $styles={styles}>
-                    {post._namePath}
-                    <ArrowRight>
-                      <MoveUpRight size={20} strokeWidth={3} />
-                    </ArrowRight>
-                  </PostLink>
-                </PostCard>
-              ))
-            ) : (
-              [...Array(4)].map((_, index) => (
-                <PostCard key={index}>
-                  <Img
-                    src="https://firebasestorage.googleapis.com/v0/b/data-shop-f5bf3.appspot.com/o/frameonix%2FpreviuImg-2.png?alt=media&token=acfe8602-75e2-462a-9595-5f5dd761db78"
-                    alt={`previuPost-${index}`}
-                  />
-                  <PostHeading>Post {index + 1}</PostHeading>
-                  <PostDescription>
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                    Alias eligendi animi temporibus, officiis deserunt pariatur
-                    quae accusantium nam ipsum consequuntur eius quidem
-                  </PostDescription>
-                  <PostLink href="#">Link
-                    <ArrowRight>
-                      <MoveUpRight size={20} strokeWidth={3} />
-                    </ArrowRight>
-                  </PostLink>
-                </PostCard>
-              ))
-            )}
+            {mergedContent.cards.map((item, index) => (
+              //card
+              <PostCard key={index} $styles={styles}>
+                <Img
+                  src={item.img}
+                  alt={`post-image-${index}`}
+                  $styles={styles} />
+                <PostHeading $styles={styles}>{item.title}</PostHeading>
+                <PostDescription $styles={styles}>
+                  {item.description}
+                </PostDescription>
+                <PostLink
+                  href={item.path}
+                  target="_blank"
+                  $styles={styles}>
+                  {item.namePath}
+                  {/* icon */}
+                  <ArrowRight>
+                    <MoveUpRight size={20} strokeWidth={3} />
+                  </ArrowRight>
+                </PostLink>
+              </PostCard>
+            ))}
           </Grid>
         </Container>
       )}

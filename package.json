@@ -3,7 +3,7 @@
   "author": "@StivCode21",
   "description": "A beautiful library with editable website layouts",
   "license": "MIT",
-  "version": "0.9.0",
+  "version": "0.10.0",
   "type": "module",
   "main": "dist/frameonix.umd.js",
   "module": "dist/frameonix.es.js",

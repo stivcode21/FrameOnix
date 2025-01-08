@@ -1,6 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 
+//styles
 const FooterContainer = styled.footer`
   padding: 0.5rem 4%;
   background: #ccc;
@@ -18,7 +19,7 @@ const Container = styled.div`
 
 const Paragraph = styled.p`
   font-size: 0.9rem;
-  ${({ $styles }) => $styles?.p && $styles.p}
+  ${({ $styles }) => $styles?.description && $styles.description}
 `;
 
 const Img = styled.img`
@@ -37,15 +38,14 @@ const Footer = ({ id, styles = {}, content = {}, children }) => {
       ) : (
         <Container $styles={styles}>
           <Paragraph $styles={styles}>
-            {content?.p || `© ${new Date().getFullYear()} FramerOnix Este proyecto es de libre uso y distribución`}
+            {content?.description || `© ${new Date().getFullYear()} FramerOnix Este proyecto es de libre uso y distribución`}
           </Paragraph>
 
           <a href={id || "#Main"}>
             <Img
-              src='https://firebasestorage.googleapis.com/v0/b/data-shop-f5bf3.appspot.com/o/frameonix%2FFrameOnixLogo.png?alt=media&token=caeb140c-f605-4e3e-b023-e789e7dec315'
+              src={content?.img || 'https://firebasestorage.googleapis.com/v0/b/data-shop-f5bf3.appspot.com/o/frameonix%2FFrameOnixLogo.png?alt=media&token=caeb140c-f605-4e3e-b023-e789e7dec315'}
               $styles={styles}
-              alt='logo'
-            />
+              alt='logo' />
           </a>
         </Container>
       )}

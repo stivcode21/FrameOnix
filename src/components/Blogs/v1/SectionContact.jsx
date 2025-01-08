@@ -2,6 +2,7 @@ import { Facebook, Github, Instagram, Twitter } from 'lucide-react';
 import React from 'react';
 import styled from 'styled-components';
 
+//styles
 const Section = styled.section`
   padding: 50px 4%;
   background: #ccc;
@@ -23,7 +24,7 @@ const Container = styled.div`
 const Title = styled.h2`
   font-weight: bold;
   font-size: 2.5rem;
-  ${({ $styles }) => $styles?.h2 && $styles.h2};
+  ${({ $styles }) => $styles?.title && $styles.title};
 `;
 
 const IconsContainer = styled.div`
@@ -64,7 +65,7 @@ const Form = styled.form`
 const FormTitle = styled.h3`
   font-weight: bold;
   font-size: 2rem;
-  ${({ $styles }) => $styles?.h3 && $styles.h3};
+  ${({ $styles }) => $styles?._title && $styles._title};
 `;
 
 const Input = styled.input`
@@ -99,16 +100,29 @@ const Button = styled.button`
   ${({ $styles }) => $styles?.button && $styles.button};
 `;
 
+// Default data
+const defaultContent = {
+  title: 'Follow Us',
+  _title: 'CONTACT',
+  button: 'Contact Us'
+};
+
 const SectionContact = ({ id, styles = {}, content = {}, children }) => {
+
+  const mergedContent = {
+    ...defaultContent,
+    ...content
+  };
+
   return (
     <Section id={id || "Contact"} $styles={styles}>
       {children ? (
         children
       ) : (
         <Container $styles={styles}>
-          {/* Text and Icons */}
+          {/* container Icons */}
           <div style={{ display: 'flex', flexDirection: 'column' }}>
-            <Title $styles={styles}>{content?.h2 || "Follow Us"}</Title>
+            <Title $styles={styles}>{mergedContent.title}</Title>
             <IconsContainer $styles={styles}>
               {content?.icons ? (
                 content.icons.map((icon, index) => (
@@ -138,18 +152,16 @@ const SectionContact = ({ id, styles = {}, content = {}, children }) => {
 
           {/* Contact Form */}
           <Form $styles={styles}>
-            <FormTitle $styles={styles}>{content?.h3 || "CONTACT"}</FormTitle>
+            <FormTitle $styles={styles}>{mergedContent._title}</FormTitle>
             <Input
               type="text"
               placeholder={content?.placeholderA || "Name"}
-              $styles={styles}
-            />
+              $styles={styles} />
             <TextArea
               placeholder={content?.placeholderB || "Message"}
-              $styles={styles}
-            ></TextArea>
+              $styles={styles}></TextArea>
             <Button type="submit" $styles={styles}>
-              {content?.button || "Contact Us"}
+              {mergedContent.button}
             </Button>
           </Form>
         </Container>

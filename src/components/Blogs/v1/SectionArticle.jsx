@@ -1,6 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 
+//styles
 const Section = styled.section`
   width: 100%;
   height: 100%;
@@ -28,7 +29,7 @@ const Subtitle = styled.h2`
 
   @media (min-width: 800px) 
     { font-size: 38px; };
-  ${({ $styles }) => $styles?.h2 && $styles.h2}
+  ${({ $styles }) => $styles?.title && $styles.title}
 `;
 
 const ImageSection = styled.div`
@@ -59,17 +60,31 @@ const ArticleTitle = styled.h3`
   font-size: 1.5rem;
   @media (min-width: 800px)
    { font-size: 1.9rem; }
-  ${({ $styles }) => $styles?.h3 && $styles.h3}
+  ${({ $styles }) => $styles?._tittle && $styles._title}
 `;
 
 const ArticleText = styled.p`
  font-size: 0.8rem;
  @media (min-width: 800px) 
  { font-size: 1rem; }
-  ${({ $styles }) => $styles?.text && $styles.text}
+  ${({ $styles }) => $styles?.description && $styles.description}
 `;
 
+//data
+const defaultContent = {
+  title: 'This is a default subtitle',
+  img: 'https://firebasestorage.googleapis.com/v0/b/data-shop-f5bf3.appspot.com/o/frameonix%2FpreviuImg-1.png?alt=media&token=b1bdd884-faf6-461b-ace3-37c114043295',
+  _title: 'Default Article',
+  description: 'This is a default article description Lorem ipsum dolor sit amet consectetur adipisicing elit. Debitis alias odio, commodi maxime modi sunt quam molestias ea ipsum, assumenda saepe officia temporibus laudantium unde repellendus ducimus, velit dolores corrupti.'
+};
+
 const SectionArticle = ({ id, styles = {}, content = {}, children }) => {
+
+  const mergedContent = {
+    ...defaultContent,
+    ...content
+  };
+
   return (
     <Section id={id || "Blog"} $styles={styles}>
       {children ? (
@@ -78,16 +93,16 @@ const SectionArticle = ({ id, styles = {}, content = {}, children }) => {
         <>
           {/* Description Section */}
           <DescriptionContainer $styles={styles}>
-            <Subtitle $styles={styles}>{content.h2 || "This is a default subtitle"}</Subtitle>
+            <Subtitle $styles={styles}>{mergedContent.title}</Subtitle>
           </DescriptionContainer>
 
           {/* Image Section */}
-          <ImageSection $img={content?.img || "https://firebasestorage.googleapis.com/v0/b/data-shop-f5bf3.appspot.com/o/frameonix%2FpreviuImg-1.png?alt=media&token=b1bdd884-faf6-461b-ace3-37c114043295"} $styles={styles}>
+          <ImageSection $img={mergedContent.img} $styles={styles}>
             {/* Article Content */}
             <Article $styles={styles}>
-              <ArticleTitle $styles={styles}>{content.h3 || "Default Article"}</ArticleTitle>
+              <ArticleTitle $styles={styles}>{mergedContent._title}</ArticleTitle>
               <ArticleText $styles={styles}>
-                {content.text || "This is a default article description Lorem ipsum dolor sit amet consectetur adipisicing elit. Debitis alias odio, commodi maxime modi sunt quam molestias ea ipsum, assumenda saepe officia temporibus laudantium unde repellendus ducimus, velit dolores corrupti."}
+                {mergedContent.description}
               </ArticleText>
             </Article>
           </ImageSection>

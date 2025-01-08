@@ -31,6 +31,7 @@ const ContainerLogo = styled.div`
 const Img = styled.img`
   width: 3rem;
   height: 3rem;
+  object-fit: cover;
   ${({ $styles }) => $styles?.img && $styles?.img}
 `;
 
@@ -140,7 +141,7 @@ const Header = ({ id, styles = {}, content = {}, children }) => {
     const [navState, setNavState] = useState(false);
 
     const onNavScroll = () => {
-        if (window.scrollY > 50) {
+        if (window.scrollY > 30) {
             setNavState(true)
         } else {
             setNavState(false)
